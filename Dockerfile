@@ -61,6 +61,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 RUN pip install awscli
 
+RUN apt-get update
+RUN apt-get -y install curl gnupg
+RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
+RUN apt-get -y install nodejs
+
 RUN	docker-php-ext-configure gd --with-freetype --with-jpeg
 
 RUN docker-php-ext-install -j "$(nproc)" \
@@ -110,10 +115,7 @@ RUN if [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then \
         && chmod -R $USER_UID:root /usr/local/share/nvm; \
     fi
 
-# [Optional] Install a version of Node.js using nvm for front end dev
-ARG INSTALL_NODE="true"
-ARG NODE_VERSION="lts/*"
-RUN if [ "${INSTALL_NODE}" = "true" ]; then su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; fi
+
 
 RUN curl -s https://getcomposer.org/installer | php
 
