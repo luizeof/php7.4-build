@@ -123,6 +123,8 @@ RUN mv composer.phar /usr/local/bin/composer
 
 RUN composer global require laravel/installer
 
+RUN export PATH="$PATH:$HOME/.composer/vendor/bin"
+
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
