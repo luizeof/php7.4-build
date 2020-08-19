@@ -93,7 +93,6 @@ RUN docker-php-ext-enable imagick \
 # Enable apache modules
 RUN a2enmod setenvif \
   headers \
-  security2 \
   deflate \
   filter \
   expires \
