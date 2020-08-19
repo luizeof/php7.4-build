@@ -121,6 +121,8 @@ RUN curl -s https://getcomposer.org/installer | php
 
 RUN mv composer.phar /usr/local/bin/composer
 
+RUN composer global require laravel/installer
+
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
