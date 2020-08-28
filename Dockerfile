@@ -9,7 +9,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     build-essential \
     apache2 \
     tcl \
-    dos2unix \
     cron \
     bzip2 \
     tidy \
@@ -79,7 +78,6 @@ RUN docker-php-ext-install -j "$(nproc)" \
   xml \
   pdo_mysql \
   soap \
-  opcache \
   mysqli \
   opcache \
   zip
