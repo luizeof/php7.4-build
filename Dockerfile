@@ -86,12 +86,14 @@ RUN printf "\n" | printf "\n" | pecl install redis \
   ; \
   pecl install imagick \
   apcu \
+  mailparse \
   memcached
 
 RUN docker-php-ext-enable imagick \
   bcmath \
   redis \
   opcache \
+  mailparse \
   apcu \
   memcached
 
