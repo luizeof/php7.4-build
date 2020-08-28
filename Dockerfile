@@ -107,6 +107,10 @@ RUN a2enmod setenvif \
   include \
   ext_filter
 
+COPY optimize.conf /etc/apache2/conf-available/optimize.conf
+
+RUN a2enconf optimize
+
 # set recommended opcache settings
 RUN { \
   echo 'opcache.memory_consumption=768'; \
