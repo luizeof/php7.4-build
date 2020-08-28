@@ -113,6 +113,8 @@ RUN a2enconf optimize
 
 # set recommended opcache settings
 RUN { \
+  echo '[opcache]' \
+  echo 'opcache.enable=1' \
   echo 'opcache.validate_timestamps=0' \
   echo 'opcache.memory_consumption=768'; \
   echo 'opcache.interned_strings_buffer=32'; \
