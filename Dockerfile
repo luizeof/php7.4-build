@@ -107,6 +107,14 @@ RUN a2enmod setenvif \
   include \
   ext_filter
 
+# set recommended opcache settings
+RUN { \
+  echo 'opcache.memory_consumption=768'; \
+  echo 'opcache.interned_strings_buffer=32'; \
+  echo 'opcache.max_accelerated_files=99999'; \
+  echo 'opcache.revalidate_freq=2'; \
+  echo 'opcache.fast_shutdown=1'; \
+  } > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
 RUN curl -s https://getcomposer.org/installer | php
 
