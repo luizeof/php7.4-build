@@ -108,6 +108,13 @@ RUN a2enmod setenvif \
   include \
   ext_filter
 
+RUN echo '\
+opcache.interned_strings_buffer=16\n\
+opcache.load_comments=Off\n\
+opcache.max_accelerated_files=16000\n\
+opcache.save_comments=Off\n\
+' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
+
 COPY optimize.conf /etc/apache2/conf-available/optimize.conf
 
 RUN a2enconf optimize
