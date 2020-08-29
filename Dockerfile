@@ -25,6 +25,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   libwebp6 \
   graphicsmagick \
   csstidy \
+  supervisor \
   g++ \
   zlib1g-dev \
   libjpeg-dev \
@@ -81,6 +82,7 @@ RUN docker-php-ext-install -j "$(nproc)" \
   xml \
   pdo_mysql \
   soap \
+  pcntl \
   mysqli \
   opcache \
   zip
