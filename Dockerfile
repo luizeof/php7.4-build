@@ -113,8 +113,8 @@ opcache.enable=1\n\
 opcache.memory_consumption=128\n\
 opcache.interned_strings_buffer=16\n\
 opcache.load_comments=Off\n\
-opcache_revalidate_freq = 0\n\
-opcache.max_accelerated_files=16000\n\
+opcache_revalidate_freq=0\n\
+opcache.max_accelerated_files=99999\n\
 opcache.save_comments=Off\n\
 ' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 
