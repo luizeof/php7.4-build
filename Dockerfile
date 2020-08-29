@@ -13,6 +13,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   bzip2 \
   tidy \
   wget \
+  libpcre3-dev \
   less \
   nano \
   htop \
@@ -113,14 +114,14 @@ RUN a2enconf optimize
 
 # set recommended opcache settings
 RUN { \
-  echo 'opcache.enable=1' \
-  echo 'opcache.validate_timestamps=0' \
-  echo 'opcache.memory_consumption=768'; \
-  echo 'opcache.interned_strings_buffer=32'; \
-  echo 'opcache.max_accelerated_files=99999'; \
-  echo 'opcache.revalidate_freq=2'; \
-  echo 'opcache.max_wasted_percentage=10' \
-  echo 'opcache.fast_shutdown=1'; \
+  echo 'opcache.enable = 1' \
+  echo 'opcache.validate_timestamps = 0' \
+  echo 'opcache.memory_consumption = 768'; \
+  echo 'opcache.interned_strings_buffer = 32'; \
+  echo 'opcache.max_accelerated_files = 99999'; \
+  echo 'opcache.revalidate_freq = 2'; \
+  echo 'opcache.max_wasted_percentage = 10' \
+  echo 'opcache.fast_shutdown = 1'; \
   } > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
 RUN curl -s https://getcomposer.org/installer | php
