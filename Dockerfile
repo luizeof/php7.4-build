@@ -112,11 +112,13 @@ RUN a2enmod setenvif \
 
 RUN echo '\
 opcache.enable=1\n\
-opcache.memory_consumption=128\n\
-opcache.interned_strings_buffer=16\n\
+opcache.memory_consumption=512\n\
+opcache.interned_strings_buffer=32\n\
 opcache.load_comments=Off\n\
-opcache_revalidate_freq=0\n\
-opcache.max_accelerated_files=99999\n\
+opcache.revalidate_freq=0\n\
+opcache.validate_timestamps=0\n\
+opcache.enable_file_override=1\n\
+opcache.max_accelerated_files=999999\n\
 opcache.save_comments=Off\n\
 ' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 
