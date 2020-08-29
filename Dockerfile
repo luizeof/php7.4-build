@@ -63,6 +63,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 RUN pip install awscli
 
+RUN mkdir -p /var/www/.aws/
+
 RUN apt-get update
 RUN apt-get -y install curl gnupg
 RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
