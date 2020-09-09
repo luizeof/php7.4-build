@@ -13,6 +13,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   bzip2 \
   tidy \
   wget \
+  gnupg \
   libpcre3-dev \
   less \
   nano \
@@ -43,6 +44,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   libldap2-dev \
   libmemcached-dev \
   libxml2-dev \
+  sysvbanner \
   libzip-dev \
   mariadb-client \
   libwebp-dev \
@@ -64,12 +66,18 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 RUN pip install awscli
 
-RUN mkdir -p /var/www/.aws/
+RUN mkdir -p /var/www/.aws
+RUN mkdir -p /root/.aws
 
 RUN apt-get update
-RUN apt-get -y install curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+RUN apt-get update
 RUN apt-get -y install nodejs
+
+# Installing Apache mod-pagespeed
+RUN curl -o /home/mod-pagespeed-beta_current_amd64.deb https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-beta_current_amd64.deb
+RUN dpkg -i /home/mod-pagespeed-*.deb
+RUN apt-get -f install
 
 RUN	docker-php-ext-configure gd --with-freetype --with-jpeg
 
@@ -112,17 +120,22 @@ RUN a2enmod setenvif \
   include \
   ext_filter
 
+
+RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+  ; \
+  rm -rf /var/lib/apt/lists/*
+
 RUN echo '\
-opcache.enable=1\n\
-opcache.memory_consumption=512\n\
-opcache.interned_strings_buffer=32\n\
-opcache.load_comments=Off\n\
-opcache.revalidate_freq=0\n\
-opcache.validate_timestamps=0\n\
-opcache.enable_file_override=1\n\
-opcache.max_accelerated_files=999999\n\
-opcache.save_comments=Off\n\
-' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
+  opcache.enable=1\n\
+  opcache.memory_consumption=512\n\
+  opcache.interned_strings_buffer=32\n\
+  opcache.load_comments=Off\n\
+  opcache.revalidate_freq=0\n\
+  opcache.validate_timestamps=0\n\
+  opcache.enable_file_override=1\n\
+  opcache.max_accelerated_files=999999\n\
+  opcache.save_comments=Off\n\
+  ' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 
 COPY optimize.conf /etc/apache2/conf-available/optimize.conf
 
