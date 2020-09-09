@@ -8,24 +8,16 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   software-properties-common \
   build-essential \
   apache2 \
-  tcl \
   cron \
   bzip2 \
-  tidy \
   wget \
   gnupg \
   libpcre3-dev \
-  less \
   nano \
   htop \
   zip \
   unzip \
   git \
-  libwebp-dev \
-  webp \
-  libwebp6 \
-  graphicsmagick \
-  csstidy \
   supervisor \
   g++ \
   zlib1g-dev \
@@ -35,21 +27,15 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   libgif-dev \
   libtiff-dev \
   libz-dev \
-  inetutils-ping \
   libpq-dev \
   libcurl4-openssl-dev \
   libaprutil1-dev \
   libssl-dev \
   libicu-dev \
-  libldap2-dev \
-  libmemcached-dev \
   libxml2-dev \
   sysvbanner \
   libzip-dev \
-  mariadb-client \
-  libwebp-dev \
   libjpeg62-turbo-dev \
-  libxpm-dev \
   libfreetype6-dev \
   imagemagick \
   ghostscript \
@@ -58,13 +44,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   pngquant \
   libc-client-dev \
   libjpeg-dev \
-  gifsicle \
-  groff \
-  python \
-  python-setuptools \
-  python-pip && apt-get clean -y && rm -rf /var/lib/apt/lists/* &&  rm -rf /tmp/library-scripts
-
-RUN pip install awscli
+  gifsicle && apt-get clean -y && rm -rf /var/lib/apt/lists/* &&  rm -rf /tmp/library-scripts \
+  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
 
 RUN apt-get update
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
@@ -96,16 +77,14 @@ RUN printf "\n" | printf "\n" | pecl install redis \
   ; \
   pecl install imagick \
   apcu \
-  mailparse \
-  memcached
+  mailparse
 
 RUN docker-php-ext-enable imagick \
   bcmath \
   redis \
   opcache \
   mailparse \
-  apcu \
-  memcached
+  apcu
 
 # Enable apache modules
 RUN a2enmod setenvif \
@@ -116,11 +95,6 @@ RUN a2enmod setenvif \
   rewrite \
   include \
   ext_filter
-
-
-RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-  ; \
-  rm -rf /var/lib/apt/lists/*
 
 RUN echo '\
   opcache.enable=1\n\
