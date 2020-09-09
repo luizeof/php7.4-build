@@ -66,9 +66,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 RUN pip install awscli
 
-RUN mkdir -p /var/www/.aws
-RUN mkdir -p /root/.aws
-
 RUN apt-get update
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 RUN apt-get update
