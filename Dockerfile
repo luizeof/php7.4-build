@@ -2,6 +2,8 @@ FROM php:7.4-apache
 
 EXPOSE 80
 
+ENV COMPOSER_MEMORY_LIMIT=-1
+
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   && apt-get install -y curl \ 
   sudo \
