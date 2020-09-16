@@ -85,7 +85,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   libc-client-dev \
   libjpeg-dev \
   gifsicle && apt-get clean && rm -rf /var/lib/apt/lists/* &&  rm -rf /tmp/library-scripts \
-  apt-get purge -o APT::AutoRemove::RecommendsImportant=false
+  apt-get purge
 
 RUN apt-get update
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
