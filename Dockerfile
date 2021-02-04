@@ -4,7 +4,8 @@ EXPOSE 80
 
 ENV COMPOSER_MEMORY_LIMIT -1
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+RUN apt-get update \
+  && export DEBIAN_FRONTEND=noninteractive \
   && apt-get install -y curl \
   sudo \
   software-properties-common \
@@ -12,6 +13,8 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   apache2 \
   cron \
   bzip2 \
+  graphviz \
+  dnsutils \
   wget \
   gnupg \
   libpcre3-dev \
