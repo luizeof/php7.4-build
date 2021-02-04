@@ -5,7 +5,7 @@ EXPOSE 80
 ENV COMPOSER_MEMORY_LIMIT -1
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-  && apt-get install -y curl \ 
+  && apt-get install -y curl \
   sudo \
   software-properties-common \
   build-essential \
@@ -41,7 +41,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   libfreetype6-dev \
   imagemagick \
   ghostscript \
-  jpegoptim \ 
+  jpegoptim \
   optipng \
   pngquant \
   libnss3-dev \
@@ -55,11 +55,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   libcairo2 \
   libcups2 \
   libdbus-1-3 \
-  libexpat1 \ 
+  libexpat1 \
   libfontconfig1 \
   libgbm1 \
   libgcc1 \
-  libglib2.0-0 \ 
+  libglib2.0-0 \
   libgtk-3-0 \
   libnspr4 \
   libnss3 \
@@ -68,9 +68,9 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   libstdc++6 \
   libx11-6 \
   libx11-xcb1 \
-  libxcb1 \ 
+  libxcb1 \
   libxcomposite1 \
-  libxcursor1 \ 
+  libxcursor1 \
   libxdamage1 \
   libxext6 \
   libxfixes3 \
