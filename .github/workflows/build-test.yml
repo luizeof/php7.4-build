@@ -12,3 +12,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build image
         run: docker build . --file Dockerfile; docker system prune --all
+
