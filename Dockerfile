@@ -151,6 +151,15 @@ RUN echo '\
   opcache.save_comments=Off\n\
   ' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini
 
+# set recommended PHP.ini settings
+RUN { \
+  	echo 'file_uploads=On'; \
+  	echo 'upload_max_filesize=4M'; \
+  	echo 'post_max_size=4M'; \
+  	echo 'max_execution_time=9999'; \
+  	echo 'memory_limit=512M'; \
+  } > /usr/local/etc/php/conf.d/php74-recommended.ini
+
 COPY optimize.conf /etc/apache2/conf-available/optimize.conf
 
 RUN a2enconf optimize
